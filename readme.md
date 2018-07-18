@@ -48,3 +48,11 @@ Resolving deltas: 100% (1/1), done.
 PS C:\Users\15735\Desktop\clonepreject\master> cnpm i
 下载好相应的node_modules
 ```
+
+6.  启动项目在浏览器中查看真是效果
+
+```
+键入gulp dev
+PS C:\Users\15735\Desktop\clonepreject\master> gulp dev
+依据gulpfile.js中的任务命令开启服务，打通链接，打开网页页面，查看实际效果
+```
