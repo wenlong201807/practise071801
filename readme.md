@@ -56,3 +56,11 @@ PS C:\Users\15735\Desktop\clonepreject\master> cnpm i
 PS C:\Users\15735\Desktop\clonepreject\master> gulp dev
 依据gulpfile.js中的任务命令开启服务，打通链接，打开网页页面，查看实际效果
 ```
+
+## 将项目在多个本地文件之间关联起来，我们需要做哪些事？
+
+### 克隆出来的项目是另一个本地文件，在这个本地的操作也需要新添加到 github 中去
+
+1.  查看 git bash 中的文件路径，需要改变根目录位置 操作： cd master
+
+    ![两者差别]('/asset/imgs/trance.png')
