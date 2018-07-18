@@ -1,0 +1,30 @@
+$body_bg: #fff;
+$btn_bg: #ff8109;
+$h1_color: #37b3e4;
+$h3_color: #999999;
+$h4_color: #666666;
+$h2_color: #5e5e5e;
+$litter_color: #7d7d7d;
+$p_color: hsl(0, 0%, 52%);
+$list_color: #333;
+@mixin h_text {
+  letter-spacing: 2px;
+  margin-bottom: 44px;
+  text-shadow: 1px 1px 10px #ff8109;
+  color: $body_bg;
+}
+@mixin btn_com {
+  position: absolute;
+  top: 50%;
+  z-index: 1800;
+  height: 50px;
+  width: 50px;
+  line-height: 50px;
+  text-align: center;
+  border-radius: 10%;
+  cursor: pointer;
+  background-color: yellow;
+  &:hover {
+    background-color: red;
+  }
+}

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>first</title>
+
+  <link rel="stylesheet" href="/lib/jquery-easyui-1.5.5.2/themes/bootstrap/easyui.css">
+  <link rel="stylesheet" href="/lib/jquery-easyui-1.5.5.2/themes/icon.css">
+
+  <style>
+    #tt {
+      width: 200px;
+      margin: 0 auto;
+      border: 2px solid yellow;
+      overflow: hidden;
+    }
+  </style>
+</head>
+
+<body>
+
+  <ul id="tt"></ul>
+
+  <script type="text/javascript" src="/lib/jquery-easyui-1.5.5.2/jquery.min.js"></script>
+  <!-- <script src="/lib/jjquery-easyui-1.5.5.2/plugins/jquery.tree.js"></script> -->
+  <script type="text/javascript" src="/lib/jquery-easyui-1.5.5.2/jquery.easyui.min.js"></script>
+  <script src="/lib/jquery-easyui-1.5.5.2/easyui-lang-zh_CN.js"></script>
+
+  <script>
+
+
+
+    $('#tt').tree({
+      // url: './tree_data.json',
+      lines: true,
+      dnd: true,
+      animate: true,
+      method: 'post',
+      checkbox: true,
+      cascadeCheck: true,
+      data: [
+        {
+          text: 'Item是分公司分管1',
+          state: 'closed',
+          children: [
+            { text: 'Item11' },
+            { text: 'Item12' }
+          ]
+        },
+        {
+          text: 'Item是分公22222司分管1',
+          state: 'closed',
+          children: [
+            { text: 'Item11' },
+            { text: 'Item12' }
+          ]
+
+        }],
+      loadFilter: function (data) {
+        if (data.d) {
+          return data.d;
+        } else {
+          return data;
+        }
+      },
+      formatter: function (node) {
+        return node.text;
+      },
+      loader: function (param, success, error) {
+        // URL: '/tree/tree_data.json',
+        //   console.log(node)
+
+      },
+      onClick: function (node) {
+        alert(node.text);  // alert node text property when clicked
+      },
+      onExpand: function (node) {
+        // alert('我要展开活动了')
+      },
+      onAfterEdit: function (node) {
+        alert('编辑好了码？')
+      },
+      onDblClick: function (node) {
+        alert('我来双击了')
+      }
+    });
+  </script>
+
+</body>
+
+</html>

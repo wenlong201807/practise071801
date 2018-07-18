@@ -1,0 +1,16 @@
+#ull {
+  width: 600px;
+  height: 300px;
+  margin: 0 auto;
+  li {
+    float: left;
+    width: 100px;
+    height: 100px;
+    margin: 10px;
+    overflow: hidden;
+    background-color: red;
+  }
+  .link_a {
+    margin: 5px;
+  }
+}

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="/style/main.css">
+  <title>end_page</title>
+  <style>
+    #div1 {
+      width: 500px;
+      margin: 20px auto;
+      background: yellow;
+    }
+
+    a {
+      margin: 5px;
+    }
+  </style>
+</head>
+
+<body>
+  <ul id="ull">
+    <!-- <li class="item">01</li>
+    <li class="item">02</li>
+    <li class="item">03</li>
+    <li class="item">04</li>
+    <li class="item">05</li>
+    <li class="item">06</li>
+    <li class="item">07</li>
+    <li class="item">08</li>
+    <li class="item">09</li>
+    <li class="item">10</li> -->
+  </ul>
+
+  <div id="div1">
+    <!-- <a href="#1">首页</a>
+    <a href="#3">上一页</a>
+    <a href="#2">[2]</a>
+    <a href="#3">[3]</a>
+    <a href="#4">4</a>
+    <a href="#5">[5]</a>
+    <a href="#6">[6]</a>
+    <a href="#5">下一页</a>
+    <a href="#10">尾页</a> -->
+  </div>
+  <script src="/lib/move.js"></script>
+  <script>
+    window.onload = function () {
+
+
+      page({
+        id: 'div1',// 分页器的容器标签
+        nowNum: 1,// 当前第几页
+        allNum: 20,// 总共多少也
+        callback: function (now, all) {
+          // alert('当前页' + now + '总共页' + all)
+
+        }// callback
+      })
+    }//window.onload
+
+    function page(opt) {
+      // 如果没有分页容器，就不再执行函数代码
+      if (!opt.id) { return false }
+      var obj = document.getElementById(opt.id);
+      var nowNum = opt.nowNum || 1;
+      var allNum = opt.allNum || 5;
+      var callback = opt.callback || function () { };
+
+
+      // 显示首页的条件判断
+      if (nowNum >= 4 && allNum >= 6) {
+        var oA = document.createElement('a');
+        oA.href = '#1';
+        oA.innerHTML = '首页';
+        obj.appendChild(oA);
+      }
+
+      // 显示上一页按钮的条件判断
+      if (nowNum >= 2) {
+        var oA = document.createElement('a');
+        oA.href = '#' + (nowNum - 1);
+        oA.innerHTML = '上一页';
+        obj.appendChild(oA);
+      }
+
+      if (allNum <= 5) { // 当总页码数小于等于5时
+        for (var i = 1; i <= allNum; i++) {
+          var oA = document.createElement('a');
+          oA.href = '#' + i;
+          // 如果是当前页，改变内容样式
+          if (nowNum == i) {
+            oA.innerHTML = i;
+          } else {
+            oA.innerHTML = '[' + i + ']';
+          }
+          obj.appendChild(oA);
+        }
+      } else {// 总页数大于5的时候
+        for (var i = 1; i <= 5; i++) {
+          var oA = document.createElement('a');
+          // 当点击第一页或者第二页时，避免出现负数，需要做条件判断处理
+          if (nowNum == 1 || nowNum == 2) {
+            oA.href = '#' + i;
+            if (nowNum == i) {
+              oA.innerHTML = i;
+            } else {
+              oA.innerHTML = '[' + i + ']';
+            }
+          } else if ((allNum - nowNum) == 0 || (allNum - nowNum) == 1) {// 最后两页也得特殊处理
+            oA.href = '#' + (allNum - 5 + i);
+            // 判断当前页于其他页的不同样式
+            if ((allNum - nowNum) == 0 && i == 5) {
+              oA.innerHTML = (allNum - 5 + i);
+            } else if ((allNum - nowNum) == 1 && i == 4) {
+              oA.innerHTML = (allNum - 5 + i);
+            }
+            else {
+              oA.innerHTML = '[' + (allNum - 5 + i) + ']';
+            }
+          }
+          else {// 当前页大于3时，正常情况下
+            oA.href = '#' + (nowNum - 3 + i);
+            if (i == 3) {//当前页的样式不同
+              oA.innerHTML = (nowNum - 3 + i);
+            } else {// 显示的页码数值，不是当前页的样式
+              oA.innerHTML = '[' + (nowNum - 3 + i) + ']';
+            }
+          }
+          obj.appendChild(oA);
+        }// for (var i = 1; i <= 5; i++) {}
+      }// 总页数大于5的尾巴
+
+      // 显示下一页的条件判断
+      if ((allNum - nowNum) >= 1) {
+        var oA = document.createElement('a');
+        oA.href = '#' + (nowNum + 1);
+        oA.innerHTML = '下一页';
+        obj.appendChild(oA);
+      }
+
+      // 显示尾页的条件判断
+      if ((allNum - nowNum) >= 3 && allNum >= 6) {
+        var oA = document.createElement('a');
+        oA.href = '#' + allNum;
+        oA.innerHTML = '尾页';
+        obj.appendChild(oA);
+      }
+
+      // 调用函数
+      callback(nowNum, allNum);
+      // 给每一个 a 标签添加点击事件
+      var aA = obj.getElementsByTagName('a');
+      for (var i = 0; i < aA.length; i++) {
+        aA[i].onclick = function () {
+          var nowNum = parseInt(this.getAttribute('href').substring(1));
+          obj.innerHTML = '';
+          page({
+            id: opt.id,
+            nowNum: nowNum,
+            allNum: allNum,
+            callback: callback
+          });
+          // 阻止默认，，点击之后，#nownum 的值不会到url 地址栏去
+          return false;
+        }
+      }
+    }// function page(opt) {})
+
+
+  </script>
+</body>
+
+</html>

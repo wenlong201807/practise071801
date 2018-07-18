@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>index</title>
+</head>
+
+<body>
+  <h1>我是首页</h1>
+  <a href="/view/end_change.html?a=1&a=2&username=zhc朱文龙angsan&password=123&=">change</a>
+  <br/>
+  <a href="/view/end_upload.html">upload</a>
+  <br/>
+  <a href="/view/end_preview.html">preview</a>
+  <br/>
+  <a href="/view/login.html">login</a>
+  <br/>
+  <a href="/view/continue_page.html">continue_page</a>
+  <br/>
+  <a href="/view/end_page.html">end_page</a>
+  <br/>
+  <a href="/view/end_tree.html">end_tree</a>
+  <br/>
+  <a href="/view/practice.html">practise</a>
+  <br/>
+  <br>
+  <hr>
+  <!-- 发送表格数据给上传图片的页面preview -->
+  <form action="">
+    <p>
+      <input type="file" name="" id="fileId" value="">
+    </p>
+    <p>
+      <img src="" alt="我是图片" id="imgId">
+    </p>
+    <p>
+      <input type="button" value="ajax上传图片uploadImg" id="uploadImg">
+
+    </p>
+  </form>
+  <script src="./lib/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+  <!-- <script src="./js/ajaxSetUp_index.js"></script> -->
+  <script>
+    // 设置全局的公共头部
+    $.ajaxSetup({
+      // headers: {
+      //   'Authorization': Cookies.get('auth_token'),
+      //   'hh': 'alkdsfjalsdkf.com'
+      // },
+      statusCode: {
+        '401': function (status, xhr) {
+          //用户没有登入直接访问，/api/接口
+          alert('先登入，在访问')
+          window.location.href = '/view/login.html'
+        }
+      }
+
+    })
+
+    $(function () {
+
+      // ajax发送图片
+      $('#uploadImg').on("click", function () {
+        var formData = new FormData();
+        formData.append('file', $('#fileId')[0].files[0]);
+        $.ajax({
+          url: "http://127.0.0.1:3000/upload",
+          type: 'post',
+          data: formData,
+          processData: false,
+          contentType: false,
+          success: function (msg) {
+            alert(msg);
+            $('#imgId').attr('src', msg)
+          }
+        })
+      })
+    })//$(function)
+
+  </script>
+</body>
+
+</html>

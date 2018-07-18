@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="/style/main.css">
+  <title>简化版文件上传</title>
+</head>
+
+<body>
+  <p>
+    上传按钮***
+    <input type="button" value="ajax上传图片uploadImg" class="uploadImg">
+  </p>
+  <!-- <img src="" id="newimg" alt=""> -->
+
+  <p>
+    上传文件***
+    <input type="file" name="" id="watch_img" value="">
+  </p>
+  <!-- ********** -->
+  <h1>添加一张，上传一张，添加按钮往后一格</h1>
+  <div class="upload_container">
+    <!-- <div class="img_wrap">
+      <img class="img_container" src="" alt="">
+      <span class="img_close">x</span>
+    </div> -->
+    <div class="input_container" id="input_container">
+      <input type="file" name="" class="file" id="file">
+    </div>
+  </div>
+
+  <!-- ********* -->
+  <script src="/lib/jquery.min.js"></script>
+  <script>
+    // ajax发送图片
+    $('.uploadImg').on("click", function () {
+      var formData = new FormData();
+      formData.append('file', $('#watch_img')[0].files[0]);
+      $.ajax({
+        url: "http://127.0.0.1:3000/upload",
+        type: 'post',
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function (msg) {
+          alert(msg);
+          $('#newimg').attr('src', msg)
+        }
+      })
+    })
+    //********************************
+    // 点击#file添加图片
+    $('#file').on('change', function () {
+      // alert(12)
+      var formData = new FormData();
+      formData.append('file', $('#file')[0].files[0]);
+      $.ajax({
+        url: "http://127.0.0.1:3000/upload",
+        type: 'post',
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function (msg) {
+          $('#input_container').before('<div class="img_wrap"><img class="img_container" src="' + msg + '" alt=""><span class="img_close">x</span></div>')
+          // $('#img_container').attr('src', msg)
+        }
+      })
+    })
+    //****************************
+    // 鼠标移入图片，显示删除按钮
+    // $('.img_wrap').hover(function () {
+    //   $('.img_close').fadeIn();
+    // }, function () {
+    //   $('.img_close').fadeOut();
+    // })
+    // 点击.img_close删除图片
+    $('.upload_container').on('click', '.img_close', function () {
+      $(this).parent().remove();
+    })
+
+
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>登入并传参跳转</title>
+</head>
+
+<body>
+  <form id="formlogin" action="">
+    <p>
+      用户：
+      <input type="text" name="username" id="" value="朱文龙111">
+    </p>
+    <p>
+      密码：
+      <input type="text" name="password" id="" value="12345611">
+    </p>
+    <p>
+      再次输入密码：
+      <input type="text" name="repassword" id="" value="12345611">
+    </p>
+    <p>
+      <input type="button" value="注册" name="" id="login">
+    </p>
+  </form>
+  <hr>
+  <form id="formenter" action="">
+    <p>
+      用户：
+      <input type="text" name="username" id="" value="朱文龙">
+    </p>
+    <p>
+      密码：
+      <input type="text" name="password" id="" value="123456">
+    </p>
+    <p>
+      <input type="button" value="登录" name="" id="enter">
+    </p>
+  </form>
+  <script src="../lib/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+  <script>
+
+    /**
+    # 登录接口 post
+http://localhost:3333/api/login
+## 传值
+username
+password
+# 注册接口 post
+http://localhost:3333/api/register
+## 传值
+username
+password
+repassword
+    */
+
+    $(function () {
+
+      // Cookies.set('namell', 'valuyye', { expires: 7, path: '/', secure: true });
+      // Cookies.set('gg', 789)
+      // Cookies.set('kkk', '78ppp9')
+      // var cc = Cookies.get();
+      // console.log(cc)
+      // var bb = Cookies.get('gg');
+      // console.log(bb)
+
+
+      // 登录
+      $('#enter').on('click', function () {
+        var aa = $('#formenter').serialize();
+        $.ajax({
+          url: '/api/login',
+          // url: 'http://192.168.0.102:8080/mockjsdata/13/api/enteraa',
+          data: aa,
+          type: 'POST',
+          dataType: 'json',
+          success: function (data) {
+            console.log(data);
+            if (data.code === 2) {
+              alert(data.message)
+              Cookies.set('auth_token', data.userInfo._id);
+              window.location.href = '/index.html'
+            } else {
+              alert('请重新登入')
+            }
+          }
+        })
+      })//enter
+      // 注册
+      $('#login').on('click', function () {
+        var aa = $('#formlogin').serialize();
+        alert(aa)
+        $.ajax({
+          // url: 'http://localhost:3333/api/register',
+          url: '/api/register',
+          // url: 'http://192.168.0.102:8080/mockjsdata/13/api/loginaa',
+          data: aa,
+          type: 'POST',
+          dataType: 'json',
+          success: function (data) {
+            console.log(data)
+            if (data.code === 4) {
+              alert(data.message)
+            }
+          }
+        })
+      })//login
+    })
+
+  </script>
+
+</body>
+
+</html>

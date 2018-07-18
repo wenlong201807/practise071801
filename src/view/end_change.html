@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>页面传参</title>
+</head>
+
+<body>
+  <a href="/index.html">返回index页面</a>
+  <h1>我是显示参数的容器：内容如下</h1>
+  <p id="content">
+
+  </p>
+
+  <script src="/lib/jquery.min.js"></script>
+  <script>
+    $(function () {
+      //?a=1&a=2&username=zhc朱文龙angsan&password=123&=
+      var oldUrl = encodeURI(window.location.search);
+      function getUrlValue(oldUrl) {
+        // 以？为切分点，得到？之后的内容
+        var kkvv = oldUrl.split('?')
+        //["", "name=adsf&kkk=qwer&yyy=ppp"]
+        //判断是否有#
+        var aaa = kkvv[1].lastIndexOf('#')//-1
+        if (aaa != -1) {
+          // 字符串数组中有#
+          var bb = aaa.split('#')
+          //去掉#之后的新数组复制给原来的数组
+          kkvv[1] = bb[0]
+        }
+        //切分之后形成一个数组，//["name=adsf", "kkk=qwer", "yyy=ppp"]
+        var kv = kkvv[1].split('&')
+        var vs = {};
+        for (var i = 0; i < kv.length; i++) {
+          // ["a=1", "a=2", "username=zhc%25E6%259C%25B1%25E6%2596%2587%25E9%25BE%2599angsan", "password=123", "="]
+          var kvkv = kv[i].split('=')
+          vs[decodeURI(unescape(kvkv[0]))] = decodeURI(unescape(kvkv[1]))
+        }
+        // 返回值为所有键值对中的值所组成的数组
+        return vs;
+      }//getUrlValue(oldUrl, vs)
+      //得到返回值数组
+      var hhh = getUrlValue(oldUrl)
+      console.log(hhh)
+      console.log(hhh.username)
+      // $('#content').html(hhh)
+    })//$(function)
+
+
+
+
+  </script>
+</body>
+
+</html>

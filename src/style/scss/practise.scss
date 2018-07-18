@@ -1,0 +1,458 @@
+@import './common.scss';
+// 页面固定定位
+.fix_pic {
+  display: none;
+  position: fixed;
+  top: 350px;
+  right: 30px;
+  z-index: 2000;
+  height: 160px;
+  width: 100px;
+  border-radius: 20%;
+  transition: all 0.5s linear;
+  overflow: hidden;
+  cursor: pointer;
+  background-color: red;
+
+  // 返回顶部
+  .back_top {
+    height: 60px;
+    width: 60px;
+    line-height: 20px;
+    text-align: center;
+    background: blanchedalmond;
+    &:hover {
+      background-color: $btn_bg;
+    }
+  }
+  // 强制打开聊天对话框
+  .chat_me {
+    width: 100px;
+    height: 100px;
+  }
+  // 扣扣聊天对话框
+  .strang_qq {
+    height: 100%;
+  }
+}
+// 第一部分**头部
+header {
+  height: 114px;
+  width: 100%;
+  background: $body_bg;
+  .header_container {
+    height: 114px;
+    width: 1400px;
+    margin: 0 auto;
+    background: $body_bg;
+    .logo {
+      position: relative;
+      float: left;
+      box-sizing: border-box;
+      height: 78px;
+      width: 324px;
+      margin: 20px 20px 0px 182px;
+      background: url(/asset/imgs/logo.png) no-repeat 0px 0px;
+    }
+    .info_wrap {
+      float: right;
+      margin: 40px 135px 0px 0px;
+      .info_item {
+        float: right;
+        margin-left: 14px;
+        border-radius: 5px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        cursor: pointer;
+      }
+      .login,
+      .enter {
+        padding: 10px 30px;
+      }
+      .broad {
+        padding: 10px 20px;
+        margin-right: 33px;
+        background: $btn_bg;
+      }
+    }
+  }
+}
+// 第二部分，大背景搜索位置
+.main_search {
+  box-sizing: border-box;
+  height: 580px;
+  background: url(/asset/imgs/big.png) no-repeat 0px 0px;
+  .main_container {
+    width: 1200px;
+    padding-top: 120px;
+    margin: 0 auto;
+    text-align: center;
+    .h1_text {
+      font-size: 85px;
+      @include h-text;
+    }
+    .h2_text {
+      font-size: 58px;
+      @include h-text;
+    }
+    .search_box {
+      width: 706px;
+      margin: 0px auto;
+      height: 47px;
+      border-radius: 5px;
+      font-size: 16px;
+      color: $body_bg;
+      overflow: hidden;
+      .import_search {
+        float: right;
+        padding: 12px 40px;
+        border: none;
+        cursor: pointer;
+        background: $btn_bg;
+      }
+      .import {
+        width: 594px;
+        float: left;
+        padding: 12px;
+        border: none;
+        background: $body_bg;
+      }
+    }
+  }
+}
+// 第三部分**线上学习报名
+.study_line_container {
+  box-sizing: border-box;
+  width: 1200px;
+  height: 425px;
+  margin: 0px auto;
+  text-align: center;
+  background: $body_bg;
+  .study_title {
+    padding: 50px 0 43px;
+    letter-spacing: 2px;
+    font-size: 43px;
+  }
+  .study_wrap {
+    display: flex;
+    width: 1200px;
+    height: 250px;
+    justify-content: space-around;
+    .study_item {
+      height: 250px;
+      width: 300px;
+      .item_img {
+        height: 144px;
+        width: 135px;
+      }
+      .title_little {
+        font-size: 27px;
+        margin: 16px 0px;
+        color: $litter_color;
+      }
+      .introduce {
+        font-size: 15px;
+        color: $p_color;
+      }
+    }
+  }
+}
+// 第四部分**lunbo
+.carousel_wrap {
+  height: 560px;
+  background: url(/asset/imgs/bg_blue.png) no-repeat 50% 0%;
+  .carousel_container {
+    position: relative;
+    height: 450px;
+    width: 1200px;
+    margin: 0 auto;
+    padding-top: 65px;
+    .btn_left {
+      @include btn_com;
+      left: 30px;
+    }
+    .btn_right {
+      @include btn_com;
+      right: 30px;
+    }
+  }
+  .lunbo {
+    position: relative;
+    left: 0px;
+    z-index: 1500;
+    height: 440px;
+    width: 1400px;
+  }
+  .lunbo_item {
+    float: left;
+    position: relative;
+    box-sizing: border-box;
+    height: 418px;
+    width: 318px;
+    margin-right: 40px;
+    padding: 92px 0 0 88px;
+    border: 1px solid $h1_color;
+    border-radius: 10px;
+    background: $body_bg;
+    &:last-child {
+      margin-right: 0px;
+    }
+    .item_detail {
+      .detail_list {
+        height: 37px;
+        font-size: 18px;
+        color: $list_color;
+      }
+    }
+    .detail_btn {
+      display: block;
+      font-size: 21px;
+      padding: 12px 35px;
+      border: 1px solid transparent;
+      border-radius: 12px;
+      margin-top: 40px;
+      cursor: pointer;
+      outline: none;
+      color: $body_bg;
+      background: $btn_bg;
+    }
+    // 大梯形
+    .big_ti {
+      position: absolute;
+      top: -15px;
+      left: 72px;
+      z-index: 300;
+      width: 175px;
+      height: 64px;
+      line-height: 64px;
+      text-align: center;
+      font-size: 20px;
+      color: $body_bg;
+      border-radius: 10px;
+      background: $btn_bg;
+      &:before {
+        content: ' ';
+        display: inline-block;
+        height: 56px;
+        width: 19px;
+        transform: skewX(12deg);
+        position: absolute;
+        top: 0 px;
+        left: -6px;
+        background: $btn_bg;
+      }
+      &:after {
+        content: ' ';
+        display: inline-block;
+        height: 56px;
+        width: 19px;
+        transform: skewX(-12deg);
+        position: absolute;
+        top: 0 px;
+        right: -6px;
+        background: $btn_bg;
+      }
+    }
+    // 小梯形
+    .litter_ti {
+      position: absolute;
+      top: -15px;
+      left: 59px;
+      z-index: 100;
+      width: 200px;
+      height: 15px;
+      background: #771123;
+      &:before {
+        content: ' ';
+        display: inline-block;
+        height: 0;
+        width: 0;
+        position: absolute;
+        top: -13px;
+        left: -13px;
+        border-width: 14px;
+        border-style: solid;
+        border-color: transparent transparent #771123 transparent;
+      }
+      &::after {
+        content: ' ';
+        display: inline-block;
+        height: 0;
+        width: 0;
+        position: absolute;
+        top: -13px;
+        right: -14px;
+        border-width: 14px;
+        border-style: solid;
+        border-color: transparent transparent #771123 transparent;
+      }
+    }
+  }
+}
+// 第五部分** 学习路线图
+.study_map_wrap {
+  width: 1200px;
+  margin: 0px auto 20px;
+  .map_title {
+    height: 230px;
+    line-height: 230px;
+    font-size: 45px;
+    text-align: center;
+    color: $h1_color;
+  }
+  // 详细列表项
+  .base_list {
+    position: relative;
+    //中间线
+    .mid_line {
+      position: absolute;
+      top: 0px;
+      left: 598px;
+      height: 100%;
+      width: 4px;
+      background: $h1_color;
+    }
+    .list_item {
+      margin-left: 160px;
+      text-align: right;
+      cursor: pointer;
+      &:nth-child(2n + 1) {
+        margin-left: 640px;
+        text-align: left;
+        .item_show::after {
+          content: ' ';
+          position: absolute;
+          top: 0px;
+          left: -45px;
+          z-index: 300;
+          display: block;
+          height: 10px;
+          width: 10px;
+          border-radius: 50%;
+          background-color: $h1_color;
+        }
+      }
+      .item_show {
+        position: relative;
+        height: 110px;
+        width: 400px;
+        &:after {
+          content: ' ';
+          position: absolute;
+          top: 0px;
+          right: -45px;
+          display: block;
+          height: 10px;
+          width: 10px;
+          border-radius: 50%;
+          background-color: $h1_color;
+        }
+        .show_title {
+          font-size: 36px;
+          color: #b4b4b4;
+          margin-bottom: 16px;
+        }
+        .show_para {
+          font-size: 15px;
+          color: $h4_color;
+        }
+      }
+      // 隐藏部分
+      .item_hide {
+        display: none;
+        height: 150px;
+        width: 400px;
+        background-color: #ccc;
+      }
+    }
+  }
+}
+// 第六部分** 公司位置
+.self_introduce {
+  width: 1400px;
+  margin: 0px auto;
+  height: 632px;
+  background: $body_bg;
+  .self_info {
+    float: left;
+    width: 405px;
+    height: 520px;
+    margin-left: 115px;
+    background: $body_bg;
+    .hello {
+      height: 205px;
+      line-height: 205px;
+      font-size: 60px;
+      color: $h1_color;
+    }
+    .gongsi {
+      height: 40px;
+      font-size: 17px;
+      color: $h4_color;
+    }
+    .change {
+      margin: 45px 0 32px;
+      font-size: 26px;
+      color: #333;
+    }
+    .join {
+      font-size: 17px;
+      padding: 14px 45px;
+      border: 1px solid $h4_color;
+      border-radius: 5px;
+      cursor: pointer;
+      outline: none;
+      background: $body_bg;
+      &:hover {
+        background: $h1_color;
+      }
+    }
+  }
+  .self_map {
+    float: left;
+    width: 880px;
+    height: 520px;
+    background: burlywood;
+  }
+}
+// 第七部分**底部说明
+.footer {
+  height: 200px;
+  background: #e1e1e1;
+  .footer_container {
+    width: 1200px;
+    height: 200px;
+    margin: 0 auto;
+    background: #e1e1e1;
+    .footer_logo {
+      float: left;
+      height: 84px;
+      padding: 30px 10px 0px 130px;
+    }
+    .hotphone {
+      float: right;
+      width: 316px;
+      height: 150px;
+      color: #333;
+      .item {
+        height: 25px;
+      }
+    }
+    .footer_wechat {
+      float: right;
+      height: 118px;
+      width: 122px;
+      margin-right: 98px;
+      background: red;
+    }
+  }
+}
+// 第八部分**备案
+.beian {
+  height: 66px;
+  line-height: 66px;
+  font-size: 14px;
+  text-align: center;
+  color: $h3_color;
+  background: #333333;
+}

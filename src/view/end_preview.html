@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>ccc</title>
+</head>
+
+<body>
+  <a href="https://www.jianshu.com/p/b52f53e21bbb"></a>
+  <br>
+
+  <img id="imgurl" src="">
+  <input id="inp" type="file">
+  <hr>
+  <img src="" alt="" id="img">
+
+  <input type="file" name="" id="file">
+  <script src="/lib/jquery.min.js"></script>
+  <script>
+    $(function () {
+      // 本地图片预览  方法1
+      $('#inp').on('change', function () {
+        var imgUrl = URL.createObjectURL(this.files[0]);
+        $('#imgurl').attr('src', imgUrl)
+      })
+      // 本地图片预览 **方法2
+      $('#file').on('change', function () {
+        var reader = new FileReader();
+        reader.readAsDataURL($('#file')[0].files[0]);
+        reader.onload = function () {
+          $('#img').attr('src', this.result)
+        }
+      })
+    })
+  </script>
+</body>
+
+</html>
