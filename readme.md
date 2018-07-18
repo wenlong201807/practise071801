@@ -63,4 +63,4 @@ PS C:\Users\15735\Desktop\clonepreject\master> gulp dev
 
 1.  查看 git bash 中的文件路径，需要改变根目录位置 操作： cd master
 
-    ![两者差别]('/asset/imgs/trance.png')
+    ![两者差别]('/asset/imgs/trance.png' '查看src/asset/imgs/trace.png')
